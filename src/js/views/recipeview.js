@@ -1,3 +1,5 @@
+import View from './view';
+
 import icons from 'url:../../img/icons.svg'; ///parcel 2
 import { Fraction } from 'fractional';
 // console.log(Fraction);
