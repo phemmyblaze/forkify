@@ -616,7 +616,7 @@ const init = function() {
 };
 init();
 
-},{"core-js/modules/web.immediate.js":"49tUX","./model.js":"Y4A21","./views/recipeview.js":"8Jlc1","regenerator-runtime/runtime":"dXNgZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./views/searchView.js":"9OQAM"}],"49tUX":[function(require,module,exports) {
+},{"core-js/modules/web.immediate.js":"49tUX","./model.js":"Y4A21","./views/recipeview.js":"8Jlc1","./views/searchView.js":"9OQAM","regenerator-runtime/runtime":"dXNgZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"49tUX":[function(require,module,exports) {
 // TODO: Remove this module from `core-js@4` since it's split to modules listed below
 require("52e9b3eefbbce1ed");
 require("292fa64716f5b39e");
@@ -2646,18 +2646,18 @@ var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
 var _fractional = require("fractional");
 // console.log(Fraction);
 class RecipeView {
-    #parentElement = document.querySelector(".recipe");
-    #data;
-    #errorMessage = "We could not find that recipe. Please try another one";
-    #message = "";
+    _parentElement = document.querySelector(".recipe");
+    _data;
+    _errorMessage = "We could not find that recipe. Please try another one";
+    _message = "";
     render(data) {
-        this.#data = data;
-        const markUp = this.#generateMarkUp();
-        this.#clear();
-        this.#parentElement.insertAdjacentHTML("afterbegin", markUp);
+        this._data = data;
+        const markUp = this._generateMarkUp();
+        this._clear();
+        this._parentElement.insertAdjacentHTML("afterbegin", markUp);
     }
-    #clear() {
-        this.#parentElement.innerHTML = "";
+    _clear() {
+        this._parentElement.innerHTML = "";
     }
     renderSpinner = function() {
         const markUp = `
@@ -2667,10 +2667,10 @@ class RecipeView {
         </svg>
       </div> 
     `;
-        this.#clear();
-        this.#parentElement.insertAdjacentHTML("afterbegin", markUp);
+        this._clear();
+        this._parentElement.insertAdjacentHTML("afterbegin", markUp);
     };
-    renderError(message = this.#errorMessage) {
+    renderError(message = this._errorMessage) {
         const markUp = `
     <div class="error">
     <div>
@@ -2680,10 +2680,10 @@ class RecipeView {
     </div>
     <p>${message}</p>
     `;
-        this.#clear();
-        this.#parentElement.insertAdjacentHTML("afterbegin", markUp);
+        this._clear();
+        this._parentElement.insertAdjacentHTML("afterbegin", markUp);
     }
-    renderMessage(message = this.#message) {
+    renderMessage(message = this._message) {
         const markUp = `
     <div class="message">
     <div>
@@ -2693,8 +2693,8 @@ class RecipeView {
     </div>
     <p>${message}</p>
     `;
-        this.#clear();
-        this.#parentElement.insertAdjacentHTML("afterbegin", markUp);
+        this._clear();
+        this._parentElement.insertAdjacentHTML("afterbegin", markUp);
     }
     addHandlerRender(handler) {
         [
@@ -2702,14 +2702,14 @@ class RecipeView {
             "load"
         ].forEach((ev)=>window.addEventListener(ev, handler));
     }
-    #generateMarkUp() {
-        console.log(this.#data);
+    _generateMarkUp() {
+        console.log(this._data);
         return `
   
         <figure class="recipe__fig">
-        <img src="${this.#data.image}" alt="${this.#data.title}" class="recipe__img" />
+        <img src="${this._data.image}" alt="${this._data.title}" class="recipe__img" />
         <h1 class="recipe__title">
-            <span>${this.#data.title}</span>
+            <span>${this._data.title}</span>
         </h1>
         </figure>
 
@@ -2718,14 +2718,14 @@ class RecipeView {
             <svg class="recipe__info-icon">
             <use href="${0, _iconsSvgDefault.default}#icon-clock"></use>
             </svg>
-            <span class="recipe__info-data recipe__info-data--minutes">${this.#data.cookingTime}</span>
+            <span class="recipe__info-data recipe__info-data--minutes">${this._data.cookingTime}</span>
             <span class="recipe__info-text">minutes</span>
         </div>
         <div class="recipe__info">
             <svg class="recipe__info-icon">
             <use href="${0, _iconsSvgDefault.default}#icon-users"></use>
             </svg>
-            <span class="recipe__info-data recipe__info-data--people">${this.#data.servings}</span>
+            <span class="recipe__info-data recipe__info-data--people">${this._data.servings}</span>
             <span class="recipe__info-text">servings</span>
 
             <div class="recipe__info-buttons">
@@ -2757,7 +2757,7 @@ class RecipeView {
         <div class="recipe__ingredients">
         <h2 class="heading--2">Recipe ingredients</h2>
         <ul class="recipe__ingredient-list">
-            ${this.#data.ingredients.map(this.#generateMarkUpIngredient).join("")}
+            ${this._data.ingredients.map(this._generateMarkUpIngredient).join("")}
 
         </ul>
         </div>
@@ -2766,12 +2766,12 @@ class RecipeView {
         <h2 class="heading--2">How to cook it</h2>
         <p class="recipe__directions-text">
             This recipe was carefully designed and tested by
-            <span class="recipe__publisher">${this.#data.publisher}</span>. Please check out
+            <span class="recipe__publisher">${this._data.publisher}</span>. Please check out
             directions at their website.
         </p>
         <a
             class="btn--small recipe__btn"
-            href="${this.#data.sourceUrl}"
+            href="${this._data.sourceUrl}"
             target="_blank"
         >
             <span>Directions</span>
@@ -2784,7 +2784,7 @@ class RecipeView {
         
         `;
     }
-    #generateMarkUpIngredient(ing) {
+    _generateMarkUpIngredient(ing) {
         return `
     <li class="recipe__ingredient">
         <svg class="recipe__icon">
@@ -2801,7 +2801,14 @@ class RecipeView {
 }
 exports.default = new RecipeView();
 
-},{"url:../../img/icons.svg":"loVOp","fractional":"3SU56","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./view":"bWlJ9"}],"loVOp":[function(require,module,exports) {
+},{"./view":"bWlJ9","url:../../img/icons.svg":"loVOp","fractional":"3SU56","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bWlJ9":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+class View {
+}
+exports.default = View;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"loVOp":[function(require,module,exports) {
 module.exports = require("9bcc84ee5d265e38").getBundleURL("hWUTQ") + "icons.dfd7a6db.svg" + "?" + Date.now();
 
 },{"9bcc84ee5d265e38":"lgJ39"}],"lgJ39":[function(require,module,exports) {
@@ -3092,28 +3099,21 @@ Fraction.primeFactors = function(n) {
 };
 module.exports.Fraction = Fraction;
 
-},{}],"bWlJ9":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-class View {
-}
-exports.default = View;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9OQAM":[function(require,module,exports) {
+},{}],"9OQAM":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 class SearchView {
-    #parentEL = document.querySelector(".search");
+    _parentEL = document.querySelector(".search");
     getQuery() {
-        const query = this.#parentEL.querySelector(".search__field").value;
-        this.#clearInput();
+        const query = this._parentEL.querySelector(".search__field").value;
+        this._clearInput();
         return query;
     }
-    #clearInput() {
-        this.#parentEL.querySelector(".search__field").value = "";
+    _clearInput() {
+        this._parentEL.querySelector(".search__field").value = "";
     }
     addHandlerSearch(handler) {
-        this.#parentEL.addEventListener("submit", function(e) {
+        this._parentEL.addEventListener("submit", function(e) {
             e.preventDefault();
             handler();
         });
